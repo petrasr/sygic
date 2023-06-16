@@ -9,18 +9,16 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.paging.LoadState
 import com.example.sygic.R
-import com.example.sygic.data.api.RetrofitBuilder
 import com.example.sygic.databinding.ActivityMainBinding
-import com.example.sygic.repository.ApiRepositoryImpl
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-    private val viewModel: MainViewModel by viewModels {
-        MainVMF(ApiRepositoryImpl(RetrofitBuilder.apiService))
-    }
+    private val viewModel: MainViewModel by viewModels()
     private val adapter = GalleryAdapter(::onItemClick)
 
     override fun onCreate(savedInstanceState: Bundle?) {
